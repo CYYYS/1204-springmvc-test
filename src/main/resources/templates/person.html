@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"></meta>
+<title>Insert title here</title>
+<script type="text/javascript" th:src="@{webjars/jquery/2.1.4/jquery.js}"></script>
+<script type="text/javascript">
+	function testJson(){
+		var json = '{"id":1,"name":"崔阳超","address":"山西晋城","date":"2017-01-01"}';
+		$.getJSON("Json2Entity",{"json":json},function(result){
+			//console.info(result);
+		})
+	}
+	function testJson2(){
+		$.getJSON("Entity2Json",function(entity){
+			console.info(entity);
+			var tr="";
+			tr += "<tr>";
+			tr += "<td>"+entity.id+"</td>";
+			tr += "<td>"+entity.name+"</td>";
+			tr += "<td>"+entity.address+"</td>";
+			tr += "<td>"+entity.date+"</td>";
+			tr += "</tr>";
+			$("#tb").html(tr);
+		})
+		
+	}
+</script>
+<style type="text/css">
+table {
+	width: 40%;
+	text-align: center;
+	border-collapse: collapse;
+}
+td {
+	border: 1px solid;
+}
+</style>
+</head>
+<body>
+	<input type="button" value="JsonToEntity" onclick="testJson()"/>
+	<input type="button" value="EntityToJson" onclick="testJson2()"/>
+	<table>
+		<thead>
+			<tr>
+				<th>编号</th>
+				<th>姓名</th>
+				<th>地址</th>
+				<th>日期</th>
+			</tr>
+		</thead>
+		<tbody id="tb">
+			
+		</tbody>
+	</table>
+</body>
+</html>
